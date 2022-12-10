@@ -18,7 +18,7 @@ int main(void)
 			putchar(' ');
 		} else if (i == '9')
 		{
-			putchar('$');
+			putchar('\n');
 		}
 
 		i++;
