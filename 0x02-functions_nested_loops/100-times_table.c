@@ -1,4 +1,9 @@
 #include "main.h"
+/**
+ * print_times_table - Print the n times table with 0
+ * @n: the argument of type int
+ * Return: 0
+ */
 void print_times_table(int n)
 {
 	int i;
@@ -16,9 +21,9 @@ void print_times_table(int n)
 					_putchar('0' + k);
 				else
 				{
-					_putcahr(',');
+					_putchar(',');
 					_putchar(' ');
-					if (product <= 9)
+					if (k <= 9)
 					{
 						_putchar(' ');
 						_putchar(' ');
