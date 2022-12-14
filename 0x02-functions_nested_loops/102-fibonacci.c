@@ -8,20 +8,19 @@
 int main(void)
 {
 	int i;
-	int j = 50;
 
-	int long a = 1;
-	int long b = 2;
+	long int a = 0, b = 1, c;
 
-	for (i = 1; i <= (j / 2); i++)
+	for (i = 1; i <= 50; i++)
 	{
-		printf("%li %li ", a, b);
-		a += b;
-		b += a;
-	}
-	if (j % 2 == 1)
-		printf("%li", a);
+		c = a + b;
+		a = b;
+		b = c;
+		printf("%lu", c);
 
+		if (i <= 49)
+			printf(", ");
+	}
 	printf("\n");
 
 	return (0);

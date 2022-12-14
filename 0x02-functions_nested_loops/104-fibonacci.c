@@ -1,42 +1,38 @@
 #include <stdio.h>
 /**
- * main - Program entry point
+ * main - Program entry point (print 1st 98 fibonacci
+ * numbers, starting with 1 and 2
  * Return: 0 (exit program)
  */
 int main(void)
 {
-	int i, j;
-	unsigned long a = 1, b = 1;
-	unsigned long add = 0;
-	long head_a, tail_a, head_b, tail_b, total_head, total_tail;
+	unsigned long a, b, c, d, e, f, g;
 
-	printf("1");
-	for (i = 2; i < 93; i++)
+	b = 1;
+	c = 2;
+	printf("%lu", b);
+	for (a = 1; a < 91; a++)
 	{
-		add = a + b;
-		a = b;
-		b = add;
-		printf(", %lu", add);
+		printf(", %lu", c);
+		c = c + b;
+		b = c - b;
 	}
 
-	head_a = a / 1000000000;
-	tail_a = a % 1000000000;
-	head_b = b / 1000000000;
-	tail_b = b % 1000000000;
+	d = b / 1000000000;
+	e = b % 1000000000;
+	f = c / 1000000000;
+	g = c % 1000000000;
 
-	for (; i < 99; i++)
+	for (a = 92; a < 99; a++)
 	{
-		j = (tail_a + tail_b) / 1000000000;
-		total_tail = (tail_a + tail_b) - (1000000000 * j);
-		total_head = (tail_a + tail_b) + j;
-
-		printf(", %lu%lu", total_head, total_tail);
-
-		head_a = head_b;
-		tail_a = tail_b;
-		head_b = total_head;
-		tail_b = total_tail;
+		printf(", %lu", f + (g / 1000000000));
+		printf(", %lu", g % 1000000000);
+		f = f + d;
+		d = f - d;
+		g = g + e;
+		e = g - e;
 	}
+
 	printf("\n");
 	return (0);
 }
