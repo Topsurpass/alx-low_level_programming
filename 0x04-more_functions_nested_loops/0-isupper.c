@@ -1,5 +1,3 @@
-#include "main.h"
-#include <stdio.h>
 /**
  * _isupper - Check for uppercase
  * @c: the first argument of type integer
