@@ -5,31 +5,20 @@
  */
 void print_number(int n)
 {
-	unsigned int tens, i;
-	unsigned int ptiveNum = n;
-	double j = 1;
+	unsigned int i = 0;
 
-	if (n == 0)
-		_putchar('0');
+	if (n < 0)
+	{
+		i = -n;
+		_putchar('-');
+	}
 	else
 	{
-		if (n < 0)
-		{
-			ptiveNum = n * -1;
-			_putchar('-');
-
-		}
-		while (j <= ptiveNum)
-			j *= 10;
-		tens = j / 10;
-
-		while (tens >= 1)
-		{
-			i = ptiveNum / tens;
-			_putchar(i + '0');
-			ptiveNum = (ptiveNum - (tens * i));
-			tens /= 10;
-		}
+		i = n;
 	}
-	_putchar('\n');
+	if (i / 10)
+	{
+		print_number(i / 10);
+	}
+	_putchar((i % 10) + '0');
 }
