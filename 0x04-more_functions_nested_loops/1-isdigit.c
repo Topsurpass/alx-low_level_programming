@@ -1,3 +1,4 @@
+#include <stdio.h>
 /**
  * _isdigit - Check if character is digit
  * @c: The first argument of type integer
