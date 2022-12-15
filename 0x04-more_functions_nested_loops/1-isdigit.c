@@ -1,4 +1,3 @@
-#include <stdio.h>
 /**
  * _isdigit - Check if character is digit
  * @c: The first argument of type integer
@@ -7,9 +6,7 @@
 
 int _isdigit(int c)
 {
-	int a = isdigit(c);
-
-	if (a == 1)
+	if (c >= 48 && c <= 57)
 		return (1);
 	else
 		return (0);
