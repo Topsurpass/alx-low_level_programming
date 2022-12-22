@@ -8,7 +8,7 @@
 char *cap_string(char *s)
 {
 	int i, j;
-	int signs[] = {32, 9, 11, 44, 59, 46, 33,
+	int signs[] = {32, 9, 10, 44, 59, 46, 33,
 		63, 34, 40, 41, 123, 125
 	}; /* ASCII key for the word separator*/
 
