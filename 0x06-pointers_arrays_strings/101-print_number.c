@@ -3,6 +3,7 @@
  * print_number - print an integer
  * @n: the intger
  */
+
 void print_number(int n)
 {
 	unsigned int num;
