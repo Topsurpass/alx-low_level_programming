@@ -1,4 +1,10 @@
 #include <string.h>
+/**
+ * string_toupper - Change string to upper case
+ * @s: the string
+ *
+ * Return: The modified string
+ */
 char *string_toupper(char *s)
 {
 	int i;
