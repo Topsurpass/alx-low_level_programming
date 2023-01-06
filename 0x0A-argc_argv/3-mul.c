@@ -1,7 +1,13 @@
 #include <stdio.h>
 #include "main.h"
 #include <stdlib.h>
-
+/**
+ * main - the entry point to my program
+ * @argc: the argument counter
+ * @argv: array of pointers to char
+ *
+ * Return: 0 (success)
+ */
 int main(int argc, char *argv[])
 {
 	int result = 1;
@@ -13,7 +19,7 @@ int main(int argc, char *argv[])
 	{
 		for (i = 1; i < argc; i++)
 		{
-			result= result * atoi(argv[i]);
+			result *= atoi(argv[i]);
 		}
 		printf("%d\n", result);
 	}
