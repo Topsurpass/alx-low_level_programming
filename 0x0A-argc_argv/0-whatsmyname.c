@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "main.h"
 /**
  * main - The entry point to our program
  * @argc: the length of parameter
@@ -8,7 +9,7 @@
  */
 int main(int argc, char *argv[])
 {
-	if (argc == 1)
+	if (argc > 0)
 		printf("%s\n", argv[0]);
 	return (0);
 }
