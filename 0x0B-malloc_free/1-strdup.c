@@ -1,6 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 /**
+ * _strlen - the length of string
+ * @s: the string
+ *
+ * Return: the string length
+ */
+int _strlen(char *s)
+{
+	int i = 0;
+
+	if (s[i] == '\0')
+		return (1);
+	i++;
+	return (i + _strlen(s + i));
+}
+/**
  * _strdup - returns pointer to a newly allocated
  * space in memory
  * @str: the string to be duplicated
@@ -11,28 +26,20 @@
 char *_strdup(char *str)
 {
 	char *arr;
-	int i = 0, j = 0;
-	int length = 0;
-
+	int i;
 
 	if (str == NULL)
 		return (NULL);
 
-	while (str[i])
-		length++, i++;
-	length++;
-
-	arr = malloc(sizeof(char) * length);
+	arr = malloc(sizeof(char) * _strlen(str));
 
 	if (arr == NULL)
 		return (NULL);
 
-	while (j < length)
+	for (i = 0; i < _strlen(str); i++)
 	{
-		arr[j] = str[j];
-		j++;
+		arr[i] = str[i];
 	}
-	/*arr[i] = '\0';*/
+	arr[i] = '\0';
 	return (arr);
 }
-
