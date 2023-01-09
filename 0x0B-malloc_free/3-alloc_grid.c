@@ -30,7 +30,7 @@ int **alloc_grid(int width, int height)
 		if (arr[i] == NULL)/*if memory cannot be allocated, free both*/
 		{
 			for (k = 0; k < height; k++)
-				free(arr[i]);/*free the one that cannot be allocated*/
+				free(arr[k]);/*free the one that cannot be allocated*/
 			free(arr);/*free the memory for that iteration too*/
 			return (NULL);
 		}
