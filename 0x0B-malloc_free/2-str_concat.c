@@ -32,7 +32,7 @@ char *str_concat(char *s1, char *s2)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
-	arr = malloc(sizeof(char) * (_strlen(s1) + _strlen(s2)));
+	arr = malloc(sizeof(char) * (_strlen(s1) + (_strlen(s2) + 1)));
 
 	if (arr == NULL)
 		return (NULL);
@@ -46,7 +46,6 @@ char *str_concat(char *s1, char *s2)
 		arr[i] = s2[j];
 		i++;
 	}
-	_strlen(s2) + 1;
 
 	return (arr);
 }
