@@ -12,7 +12,7 @@ int _strlen(char *s)
 	int i = 0;
 
 	if (s[i] == '\0')
-		return (0);
+		return (1);
 	i++;
 	return (i + _strlen(s + i));
 }
@@ -31,12 +31,10 @@ char *str_concat(char *s1, char *s2)
 
 	char *arr;
 
-	if (s1 == NULL && s2 == NULL)
-		return (NULL);
-	if (s1 == NULL && s2 != NULL)
-		return (s2);
-	if (s1 != NULL && s2 == NULL)
-		return (s1);
+	if (s1 == NULL)
+		s1 = "";
+	if (s2 == NULL)
+		s2 = "";
 	arr = malloc(sizeof(char) * (_strlen(s1) + _strlen(s2)));
 
 	if (arr == NULL)
