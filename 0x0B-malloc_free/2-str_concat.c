@@ -12,7 +12,7 @@ int _strlen(char *s)
 	int i = 0;
 
 	if (s[i] == '\0')
-		return (0);
+		return (1);
 	i++;
 	return (i + _strlen(s + i));
 }
@@ -50,7 +50,6 @@ char *str_concat(char *s1, char *s2)
 		arr[i] = s2[j];
 		i++;
 	}
-	arr[i] = '\0';
 
 	return (arr);
 }
