@@ -27,7 +27,7 @@ int _strlen(char *s)
 
 char *_strdup(char *str)
 {
-	int i;
+	int i = 0;
 
 	char *arr;
 
@@ -39,11 +39,12 @@ char *_strdup(char *str)
 	if (arr == NULL)
 		return (NULL);
 
-	for (i = 0; i < _strlen(str); i++)
+	while (i < _strlen(str))
 	{
-		arr[i] = str[i];
+		*(arr + i) = *(str + i);
+		i++;
 	}
-	/*arr[i] = '\0';*/
+	arr[i] = '\0';
 	return (arr);
 }
 
