@@ -13,6 +13,7 @@ char *str_concat(char *s1, char *s2)
 {
 	char *arr;
 	int i, j, lens1, lens2, count_i, count_j;
+
 	lens1 = 0;
 	lens2 = 0;
 	count_i = 0;
@@ -27,6 +28,7 @@ char *str_concat(char *s1, char *s2)
 		lens1++, count_i++;
 	while (s2[count_j])
 		lens2++, count_j++;
+	lens2++;
 	arr = malloc(sizeof(char) * (lens1 + lens2));
 
 	if (arr == NULL)
