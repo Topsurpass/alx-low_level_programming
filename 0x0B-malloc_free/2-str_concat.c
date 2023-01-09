@@ -1,6 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 /**
+ * _strlen - Get length of sring
+ * @s: the string
+ *
+ * Return: the length of the string
+ */
+int _strlen(char *s)
+{
+	int i = 0;
+
+	if (s[i] == '\0')
+		return (0);
+	i++;
+	return (i + _strlen(s + i));
+}
+/**
  * str_concat - concatenate 2 strings
  * @s1: the first string
  * @s2: the second string
@@ -8,32 +23,19 @@
  * Return: pointer to a newly allocated space
  * in memory which contain s1 followed byu s2
  */
-
 char *str_concat(char *s1, char *s2)
 {
 	char *arr;
-	int i, j, lens1, lens2, count_i, count_j;
-
-	lens1 = 0;
-	lens2 = 0;
-	count_i = 0;
-	count_j = 0;
-
+	int i, j;
 
 	if (s1 == NULL)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
-	while (s1[count_i])
-		lens1++, count_i++;
-	while (s2[count_j])
-		lens2++, count_j++;
-	lens2++;
-	arr = malloc(sizeof(char) * (lens1 + lens2));
+	arr = malloc(sizeof(char) * (_strlen(s1) + _strlen(s2)));
 
 	if (arr == NULL)
 		return (NULL);
-
 
 	for (i = 0; s1[i] != '\0'; i++)
 	{
@@ -44,6 +46,7 @@ char *str_concat(char *s1, char *s2)
 		arr[i] = s2[j];
 		i++;
 	}
+	_strlen(s2) + 1;
 
 	return (arr);
 }
