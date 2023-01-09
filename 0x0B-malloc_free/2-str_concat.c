@@ -11,13 +11,13 @@
 
 char *str_concat(char *s1, char *s2)
 {
+	char *arr;
 	int i, j, lens1, lens2, count_i, count_j;
 	lens1 = 0;
 	lens2 = 0;
 	count_i = 0;
 	count_j = 0;
 
-	char *arr;
 
 	if (s1 == NULL)
 		s1 = "";
