@@ -25,7 +25,6 @@ int _strlen(char *s)
  *
  * Return: pointer to char (new modified string)
  */
-
 char *argstostr(int ac, char **av)
 {
 	char *arr;
