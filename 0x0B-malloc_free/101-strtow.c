@@ -35,7 +35,7 @@ int word_count(char *s)
 	{
 		if ((s[i] != ' ') && (s[i] != '\0'))
 			i++;
-		else if (((s[i] == ' ') || (s[i] == '\0') && i && (s[i - 1] != ' ')))
+		else if (((s[i] == ' ') || (s[i] == '\0')) && ((i && (s[i - 1] != ' '))))
 		{
 			no_of_words += 1;
 			i++;
