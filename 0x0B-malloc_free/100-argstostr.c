@@ -1,39 +1,47 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 /**
- * _strlen - get the length of string
+ * _strlen - length of string
  * @s: the string
  *
- * Return: the length of string
+ * Return:  the length of string
  */
+
 int _strlen(char *s)
 {
-	int a = 0;
+	int i = 0;
 
-	if (s[a] == 0)
-	{
+	if (s[i] == '\0')
 		return (0);
-	}
-	a++;
-	return (a + _strlen(s + a));
+	i++;
+	return (i + _strlen(s + i));
 }
 /**
- * argstostr - concatenates program arguments
- * @ac: argument count
- * @av: argument arrays
+ * argstostr - Concatenate all the arguments of
+ * my program
+ * @ac: argument counter
+ * @av: argument array
  *
- * Return: concatenated string
+ * Return: pointer to char (new modified string)
  */
 char *argstostr(int ac, char **av)
 {
 	char *arr;
-	int i, j;
-	int l = 0;
+	int i, j, length, k, l;
+
+	length = 0;
+	l = 0;
 
 	if (ac == 0 || av == NULL)
 		return (NULL);
 
-	arr = malloc(sizeof(char *) * ac);
+	for (i = 0; i < ac; i++)
+	{
+		length += _strlen(av[i]);
+	}
+	length += (ac + 1);
+	arr = malloc(sizeof(char) * length);
 
 	if (arr == NULL)
 	{
@@ -41,15 +49,13 @@ char *argstostr(int ac, char **av)
 		return (NULL);
 	}
 
-	for (i = 0; i < ac; i++)
+	for (j = 0; j < ac; j++)
 	{
-
-		for (j = 0; j < _strlen(av[i]); j++)
+		for (k = 0; k < _strlen(av[j]); k++)
 		{
-			arr[l++] = av[i][j];
+			arr[l++] = av[j][k];
 		}
 		arr[l++] = '\n';
 	}
 	return (arr);
-
 }
