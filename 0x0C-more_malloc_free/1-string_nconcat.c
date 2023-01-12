@@ -26,26 +26,28 @@ int _strlen(char *s)
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
 	char *arr;
-	unsigned int i, j, len, str_2;
+	int i, j, len, numb;
 
-	str_2 = _strlen(s2);
+	numb = n;
 
 	if (s1 == NULL)
 		s1 = "";
 	if (s2 == NULL)
 		s2 = "";
-	if (n >= str_2)
-		n = (str_2);
-	len = _strlen(s1) + n + 1;
+	if (numb >= _strlen(s2))
+		numb = _strlen(s2);
+	if (numb < 0)
+		return (NULL);
+	len = _strlen(s1) + n;
 
-	arr = malloc(sizeof(*arr) * len);
+	arr = malloc(sizeof(*arr) * (len + 1));
 
 	if (arr == NULL)
 		return (NULL);
 
 	for (i = 0; s1[i] != '\0'; i++)
 		arr[i] = s1[i];
-	for (j = 0; j < n; j++)
+	for (j = 0; j < numb; j++)
 		arr[i + j] = s2[j];
 	arr[i + j] = '\0';
 
