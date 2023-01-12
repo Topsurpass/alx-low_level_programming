@@ -26,10 +26,9 @@ int _strlen(char *s)
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
 	char *arr;
-	unsigned int i, j, len, str_1, str_2;
+	unsigned int i, j, len, str_2;
 
 	str_2 = _strlen(s2);
-	str_1 = _strlen(s1);
 
 	if (s1 == NULL)
 		s1 = "";
