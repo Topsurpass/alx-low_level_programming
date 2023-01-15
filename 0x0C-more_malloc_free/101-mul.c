@@ -159,29 +159,13 @@ void check_argc(int args)
 int main(int argc, char *argv[])
 {
 	char *answer, error[6] = "Error";
-	int len_1, len_2, i;
+	int len_1, len_2;
 
 	check_argc(argc);
 	if (argc == 2)
 	{
-		answer = _allocator(sizeof(*answer) * (_strlen(argv[1]) + 1));
-		if (answer == NULL)
-		{
-			free(answer);
-			print_char(error);
-			exit(98);
-		}
-		for (i = 0; i < _strlen(argv[1]); i++)
-		{
-			if (argv[1][i] < '0' || argv[1][i] > '9')
-			{
-				print_char(error);
-				exit(98);
-			}
-			answer[i] = argv[1][i];
-		}
-		answer[i] = '\0';
-		print_char(answer);
+		print_char(error);
+		exit(98);
 	}
 	else if (argc == 3)
 	{
