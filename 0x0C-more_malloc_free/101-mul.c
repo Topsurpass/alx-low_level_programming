@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdlib.h>
+
 /**
  * _strlen - get length of string
  * @s: the string
@@ -33,10 +34,10 @@ void print_char(char *s)
 	_putchar('\n');
 }
 /**
- * _alloc - allocate space
+ * _allocator - allocate space
  * @size: size of memory block in bytes
  *
- * Return: pointer to char
+ * Return: void pointer
  */
 void *_allocator(unsigned int size)
 {
@@ -89,7 +90,6 @@ void rmv_lead_0(char *arr, int length_1, int length_2)
  * string 1 and 2
  * Renurn: nothing
  */
-
 void multiply(char num_1[], char num_2[], char answer[])
 {
 	int len_1 = _strlen(num_1);
@@ -101,6 +101,7 @@ void multiply(char num_1[], char num_2[], char answer[])
 	for (i = 0; i < (len_1 + len_2); i++)
 		answer[i] = '0';
 	answer[len_1 + len_2] = '\0';
+
 	for (i = (len_1 - 1); i >= 0; i--)
 	{
 		if ((num_1[i] < '0') || (num_1[i] > '9'))
@@ -118,15 +119,34 @@ void multiply(char num_1[], char num_2[], char answer[])
 					print_char(err);
 					exit(98);
 				}
-				product = (num_1[i] - '0') * (num_2[j] - '0');
-				temp = (answer[i + j + 1] - '0') + product + keep;
-				answer[i + j + 1] = temp % 10 + '0';
-				keep = temp / 10;
+				if (i + j + 1 < len_1 + len_2)
+				{
+					product = (num_1[i] - '0') * (num_2[j] - '0');
+					temp = (answer[i + j + 1] - '0') + product + keep;
+					answer[i + j + 1] = temp % 10 + '0';
+					keep = temp / 10;
+				}
 			}
 		}
 		answer[i] += keep;
 	}
 	rmv_lead_0(answer, len_1, len_2);
+}
+/**
+ * check_argc - check if argument is correct
+ * @args: the arguments
+ *
+ * Return: nothing
+ */
+void check_argc(int args)
+{
+	char error[6] = "Error";
+
+	if (args > 3 || args == 1)
+	{
+		print_char(error);
+		exit(98);
+	}
 }
 
 /**
@@ -136,27 +156,46 @@ void multiply(char num_1[], char num_2[], char answer[])
  *
  * Return: 0 (success), 98 (incorrect argument)
  */
-
 int main(int argc, char *argv[])
 {
-	char *answer;
-	char *error = "Error";
-	int len_1, len_2;
+	char *answer, error[6] = "Error";
+	int len_1, len_2, i;
 
-	len_1 = _strlen(argv[1]);
-	len_2 = _strlen(argv[2]);
-
-	if (argc < 3 || argc > 3)
+	check_argc(argc);
+	if (argc == 2)
 	{
-		print_char(error);
-		exit(98);
+		answer = _allocator(sizeof(*answer) * (_strlen(argv[1]) + 1));
+		if (answer == NULL)
+		{
+			free(answer);
+			print_char(error);
+			exit(98);
+		}
+		for (i = 0; i < _strlen(argv[1]); i++)
+		{
+			if (argv[1][i] < '0' || argv[1][i] > '9')
+			{
+				print_char(error);
+				exit(98);
+			}
+			answer[i] = argv[1][i];
+		}
+		answer[i] = '\0';
+		print_char(answer);
 	}
-
-	answer = _allocator(sizeof(*answer) * (len_1 + len_2 + 1));
-
-	multiply(argv[1], argv[2], answer);
-	print_char(answer);
-
-	free(answer);
+	else if (argc == 3)
+	{
+		len_1 = _strlen(argv[1]);
+		len_2 = _strlen(argv[2]);
+		answer = _allocator(sizeof(*answer) * (len_1 + len_2 + 1));
+		if (answer == NULL)
+		{
+			free(answer);
+			print_char(error);
+		}
+		multiply(argv[1], argv[2], answer);
+		print_char(answer);
+		free(answer);
+	}
 	return (0);
 }
