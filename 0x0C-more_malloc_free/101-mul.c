@@ -142,7 +142,7 @@ void check_argc(int args)
 {
 	char error[6] = "Error";
 
-	if (args > 3 || args == 1)
+	if (args > 3 || args == 1 || args == 2)
 	{
 		print_char(error);
 		exit(98);
@@ -162,12 +162,8 @@ int main(int argc, char *argv[])
 	int len_1, len_2;
 
 	check_argc(argc);
-	if (argc == 2)
-	{
-		print_char(error);
-		exit(98);
-	}
-	else if (argc == 3)
+
+	if (argc == 3)
 	{
 		len_1 = _strlen(argv[1]);
 		len_2 = _strlen(argv[2]);
