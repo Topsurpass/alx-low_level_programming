@@ -1,51 +1,33 @@
 #include "main.h"
-
 /**
- * _strlen - get the length of string
- * @str: the string
- *
- * Return: the length of the string
- */
-
-int _strlen(const char *str)
-{
-	int i = 0;
-
-	if (str[i] == '\0')
-		return (0);
-	i++;
-	return (i + _strlen(str + i));
-}
-
-/**
- * binary_to_uint - convert binary number to an
- * unsigned int
+ * binary_to_uint - convert binary to unsigned int
  * @b: the binary number
- *
- * Return: the binary number in base 10 (unsigned int)
+ * Return: unsigned int (base 10)
  */
-
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int sum, pow;
-	int length;
 
-	sum = 0, pow = 1, length = _strlen(b);
+	unsigned int sum = 0;
+	int len = 0, i;
 
 	if (b == NULL)
-		return (0);
+		return (sum);
 
-	length--;
+	while (b[len] != '\0')
+		len++;
+	len -= 1;
 
-	while (length >= 0)
+	i = 0;
+	while (b[i])
 	{
-		if (b[length] != '1' && b[length] != '0')
-			return (0);
-		if (b[length] == '1')
-			sum += pow;
-		pow *= 2;
-		length--;
+		if ((b[i] != '0') && (b[i] != '1'))
+			return (sum);
+
+		if (b[i] == '1')
+			sum += (1 * (1 << len));
+		i++;
+		len--;
 	}
+
 	return (sum);
 }
-
