@@ -1,20 +1,5 @@
 #include "main.h"
 /**
- * _strlen - get the length of string
- * @str: the string
- *
- * Return: string length
- */
-unsigned int _strlen(const char *str)
-{
-	unsigned int i = 0;
-
-	if (str[i] == '\0')
-		return (0);
-	i++;
-	return (i + _strlen(str + i));
-}
-/**
  * binary_to_uint - converts a binary number to unsigned int
  * @b: the binary number
  *
@@ -24,10 +9,14 @@ unsigned int binary_to_uint(const char *b)
 {
 	unsigned int sum, i, length;
 
-	sum = 0, length = _strlen(b) - 1;
+	sum = 0, length = 0;
 
 	if (b == NULL)
 		return (0);
+
+	while (b[length] != '\0')
+		length++;
+	length -= 1;
 
 	for (i = 0; b[i] != '\0'; i++)
 	{
