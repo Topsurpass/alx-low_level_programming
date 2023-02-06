@@ -9,13 +9,12 @@
 /**
  * print_addr - prints address
  * @ptr: magic.
- *
- * Return: nothing.
+ * Return: no return.
  */
 void print_addr(char *ptr)
 {
 	int i;
-	int start;
+	int begin;
 	char sys;
 
 	printf("  Entry point address:               0x");
@@ -23,9 +22,9 @@ void print_addr(char *ptr)
 	sys = ptr[4] + '0';
 	if (sys == '1')
 	{
-		start = 26;
+		begin = 26;
 		printf("80");
-		for (i = start; i >= 22; i--)
+		for (i = begin; i >= 22; i--)
 		{
 			if (ptr[i] > 0)
 				printf("%x", ptr[i]);
@@ -38,8 +37,8 @@ void print_addr(char *ptr)
 
 	if (sys == '2')
 	{
-		start = 26;
-		for (i = start; i > 23; i--)
+		begin = 26;
+		for (i = begin; i > 23; i--)
 		{
 			if (ptr[i] >= 0)
 				printf("%02x", ptr[i]);
@@ -54,8 +53,7 @@ void print_addr(char *ptr)
 
 /**
  * print_type - prints type
- * @ptr: magic
- *
+ * @ptr: magic.
  * Return: no return.
  */
 void print_type(char *ptr)
@@ -84,8 +82,7 @@ void print_type(char *ptr)
 
 /**
  * print_osabi - prints osabi
- * @ptr: magic
- *
+ * @ptr: magic.
  * Return: no return.
  */
 void print_osabi(char *ptr)
@@ -108,8 +105,7 @@ void print_osabi(char *ptr)
 
 /**
  * print_version - prints version
- * @ptr: magic
- *
+ * @ptr: magic.
  * Return: no return.
  */
 void print_version(char *ptr)
