@@ -13,7 +13,6 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 	dlistint_t *temp, *current, *hold;
 
 	temp = *head, current = *head;
-
 	/* if no node or linked list doesnt exist */
 	if (head == NULL || *head == NULL)
 		return (-1);
@@ -36,15 +35,18 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 		return (1);
 	}
 	/* loop and get penultimate node and delete next */
-	while (index > 1)
+	else
 	{
-		current = current->next;
-		index -= 1;
+		while (index > 1)
+		{
+			current = current->next;
+			index -= 1;
+		}
+		hold = current->next;
+		current->next = hold->next;
+		hold->next->prev = current;
+		free(hold);
+		return (1);
 	}
-	hold = current->next;
-	current->next = hold->next;
-	hold->next->prev = current;
-	free(hold);
-	return (1);
-
+	return (-1);
 }
