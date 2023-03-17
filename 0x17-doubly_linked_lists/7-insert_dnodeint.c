@@ -22,34 +22,34 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 		temp = temp->next;
 	}
 	/* if index is out of range or > length*/
-	if (idx >= len)
+	if (idx > len)
 		return (NULL);
-
 	new = malloc(sizeof(dlistint_t));
 	if (new == NULL)
 		return (NULL);
 	new->n = n;
-	/* if the index is at position 1 */
+	/* if node is to be added at index 0(first position) */
 	if (idx == 0)
+		add_dnodeint(h, n);
+	/* if last index */
+	else if (idx == len)
+		add_dnodeint_end(h, n);
+	/* if in the middle */
+	else
 	{
-		new->next = *h;
-		new->prev = NULL;
-		(*h)->prev = new;
-		(*h) = new;
+		while (idx > 1 && current != NULL)
+		{
+			current = current->next;
+			idx -= 1;
+		}
+		hold = current->next;
+		current->next = new;
+		new->next = hold;
+		new->prev = current;
+		hold->prev = new;
+		return (new);
 	}
-	/* loop up to the pelnultimate target node */
-	while (idx > 1 && current != NULL)
-	{
-		current = current->next;
-		idx -= 1;
-	}
-	/* fix new node in between pelnultimate and target mode */
-	hold = current->next;
-	current->next = new;
-	new->next = hold;
-	new->prev = current;
-	hold->prev = new;
-	return (new);
+	return (NULL);
 }
 
 
