@@ -25,7 +25,7 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 	if (index >= len)
 		return (-1);
 	/* if first node is to be deleted */
-	if (index == 0)
+	else if (index == 0)
 	{
 		hold = *head;
 		(*head) = (*head)->next;
@@ -34,8 +34,7 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 			(*head)->prev = NULL;
 		return (1);
 	}
-	/* loop and get penultimate node and delete next */
-	else
+	else if (index > 0)
 	{
 		while (index > 1)
 		{
@@ -48,5 +47,6 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 		free(hold);
 		return (1);
 	}
-	return (-1);
+	else
+		return (-1);
 }
