@@ -1,6 +1,32 @@
 #include "lists.h"
 
 /**
+ * delete_neg_val - loop and delete node with negative value
+ * @head: the head node
+ *
+ * Return: modified doubly linked list
+ */
+dlistint_t *delete_neg_val(dlistint_t **head)
+{
+	dlistint_t *del, *hold;
+
+	del = *head;
+
+	while (del != NULL)
+	{
+		if (del->n < 0)
+		{
+			hold = del;
+			hold->next->prev = hold->prev;
+			hold->prev->next = hold->next;
+			free(hold);
+		}
+		del = del->next;
+	}
+	return (*head);
+}
+
+/**
  * delete_dnodeint_at_index - delete node at index
  * @head: the head node
  * @index: the node index to delete
@@ -13,7 +39,7 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 	dlistint_t *temp, *current, *hold;
 
 	temp = *head, current = *head;
-	/* if no node or linked list doesnt exist */
+	delete_neg_val(head);
 	if (head == NULL || *head == NULL)
 		return (-1);
 	/* get the length of linked list */
