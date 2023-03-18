@@ -1,54 +1,57 @@
 #include "lists.h"
 
 /**
- * insert_dnodeint_at_index - inserts a new node at a given position
- * @h: the head node
- * @idx: the index
- * @n: the new node data
- *
- * Return: the address of the new node or NUll if failed
+ * insert_node - insert node at given index
+ * @temp: ptr to nth position node in doubly linked list
+ * @n: node data
+ * Return: address of inserted node
+ */
+dlistint_t *insert_node(dlistint_t *temp, int n)
+{
+	dlistint_t *new;
+
+	new = malloc(sizeof(dlistint_t));
+	if (!new)
+		return (NULL);
+	new->n = n;
+
+	new->next = temp;
+	new->prev = temp->prev;
+	temp->prev->next = new;
+	temp->prev = new;
+
+	return (new);
+}
+
+/**
+ * insert_dnodeint_at_index - create and insert node at nth index
+ * @h: pointer to head of list
+ * @idx: index
+ * @n: node data
+ * Return: address of inserted node, or NULL if failed
  */
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
-	unsigned int len = 0;
-	dlistint_t *temp, *current, *new;
+	dlistint_t *temp;
 
-	temp = *h, current = *h;
-
-	/* get the length of the doubly linked list*/
-	while (temp != NULL)
-	{
-		len++;
-		temp = temp->next;
-	}
-	new = malloc(sizeof(dlistint_t));
-	if (new == NULL)
+	if (!h)
 		return (NULL);
-	new->n = n;
-	/* if node is to be added at index 0(first position) */
+	/* insert at beginning */
 	if (idx == 0)
-		add_dnodeint(h, n);
-	/* if last index */
-	else if (idx == len)
-		add_dnodeint_end(h, n);
-	/* if in the middle */
-	else if (idx > 0 && idx < len)
+		return (add_dnodeint(h, n));
+
+	/* insert in the middle of list */
+	temp = *h;
+	while ((idx != 0) && (temp->next))
 	{
-		while (idx != 0 && idx < len && current->next != NULL)
-		{
-			idx -= 1;
-			current = current->next;
-		}
-		new->next = current;
-		new->prev = current->prev;
-		current->prev->next = new;
-		current->prev = new;
-		return (new);
+		idx -= 1;
+		temp = temp->next;
+		if (idx == 0)
+			return (insert_node(temp, n));
 	}
-	else
-		return (NULL);
+
+	/* insert at the end of list if idx is one after last node */
+	if (idx == 1)
+		return (add_dnodeint_end(h, n));
 	return (NULL);
 }
-
-
-
