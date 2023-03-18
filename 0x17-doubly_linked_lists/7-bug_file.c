@@ -28,25 +28,26 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	/* if node is to be added at index 0(first position) */
 	if (idx == 0)
 		add_dnodeint(h, n);
-	/* if last index */
-	else if (idx == len)
-		add_dnodeint_end(h, n);
 	/* if in the middle */
 	else if (idx > 0 && idx < len)
 	{
-		while (idx != 0 && idx < len && current->next != NULL)
+		while (current->next != NULL)
 		{
 			idx -= 1;
 			current = current->next;
+			if (idx == 0)
+			{
+				new->next = current;
+				new->prev = current->prev;
+				current->prev->next = new;
+				current->prev = new;
+				return (new);
+			}
 		}
-		new->next = current;
-		new->prev = current->prev;
-		current->prev->next = new;
-		current->prev = new;
-		return (new);
 	}
-	else
-		return (NULL);
+	/* if last index */
+	else if (idx == len)
+		add_dnodeint_end(h, n);
 	return (NULL);
 }
 
