@@ -17,6 +17,8 @@ hash_node_t *create_item(const char *key, const char *value)
 
 	if (item == NULL)
 		return (NULL);
+	if (strlen(key) == 0 || value == NULL || key == NULL)
+		return (NULL);
 
 
 	item->key = malloc(sizeof(char) * (strlen(key) + 1));
@@ -54,7 +56,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	char *new_value;
 	unsigned long int idx;
 
-	if (key == NULL)
+	if (ht == NULL || ht->array == NULL)
 		return (0);
 	item = create_item(key, value); /* The new item to add to the array */
 	if (item == NULL)
