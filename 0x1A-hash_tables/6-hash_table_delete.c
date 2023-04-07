@@ -20,22 +20,17 @@ void hash_table_delete(hash_table_t *ht)
 		return;
 	}
 
-	while (i < ht->size)
+	for (; i < ht->size; i++)
 	{
 		curr = ht->array[i];
 		while (curr != NULL) /* free collision if an item is present */
 		{
-			temp = curr->next;
-			if (curr->key != NULL)
-				free(curr->key);
-			if (curr->value != NULL)
-				free(curr->value);
-			curr->key = NULL;
-			curr->value = NULL;
-			free(curr);
-			curr = temp;
+			temp = curr;
+			curr = temp->next;
+			free(temp->key);
+			free(temp->value);
+			free(temp);
 		}
-		i++;
 	}
 	free(ht->array);
 	free(ht);
