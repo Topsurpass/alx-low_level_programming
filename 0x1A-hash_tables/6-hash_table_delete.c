@@ -23,8 +23,9 @@ void hash_table_delete(hash_table_t *ht)
 	for (; i < ht->size; i++)
 	{
 		curr = ht->array[i];
-		while ((temp = curr) != NULL) /* free collision if an item is present */
+		while (curr != NULL) /* free collision if an item is present */
 		{
+			temp = curr;
 			curr = curr->next;
 			free(temp->key);
 			free(temp->value);
