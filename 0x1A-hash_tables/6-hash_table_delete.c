@@ -20,7 +20,7 @@ void hash_table_delete(hash_table_t *ht)
 		return;
 	}
 
-	for (i = 0; i < ht->size; i++)
+	while (i < ht->size)
 	{
 		curr = ht->array[i];
 		while (curr != NULL) /* free collision if an item is present */
@@ -30,8 +30,6 @@ void hash_table_delete(hash_table_t *ht)
 				free(curr->key);
 			if (curr->value != NULL)
 				free(curr->value);
-			curr->key = NULL;
-			curr->value = NULL;
 			free(curr);
 			curr = temp;
 		}
