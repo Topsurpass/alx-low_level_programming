@@ -30,6 +30,8 @@ void hash_table_delete(hash_table_t *ht)
 				free(curr->key);
 			if (curr->value != NULL)
 				free(curr->value);
+			curr->key = NULL;
+			curr->value = NULL;
 			free(curr);
 			curr = temp;
 		}
