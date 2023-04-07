@@ -26,8 +26,10 @@ void hash_table_delete(hash_table_t *ht)
 		while (curr != NULL) /* free collision if an item is present */
 		{
 			temp = curr->next;
-			free(curr->key);
-			free(curr->value);
+			if (curr->key != NULL)
+				free(curr->key);
+			if (curr->value != NULL)
+				free(curr->value);
 			free(curr);
 			curr = temp;
 		}
