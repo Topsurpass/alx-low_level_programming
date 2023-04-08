@@ -16,13 +16,11 @@ hash_table_t *hash_table_create(unsigned long int size)
 	if (size == 0)
 		return (NULL);
 
-	/* Assign memory for the hashtable */
 	table = malloc(sizeof(hash_table_t));
 
 	if (table == NULL)
 		return (NULL);
 
-	/* Assign memory for the array holding the items */
 	item_array = malloc(sizeof(*item_array) * size);
 
 	if (item_array == NULL)
@@ -30,15 +28,11 @@ hash_table_t *hash_table_create(unsigned long int size)
 		free(table);
 		return (NULL);
 	}
-
-	/* Fill each node i.e item space with NULL */
 	while (i < size)
 	{
 		item_array[i] = NULL;
 		i++;
 	}
-
-	/* Based on hashtable struct set values for the size and array */
 	table->size = size;
 	table->array = item_array;
 
