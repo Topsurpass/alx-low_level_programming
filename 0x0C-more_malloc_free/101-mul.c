@@ -119,13 +119,11 @@ void multiply(char num_1[], char num_2[], char answer[])
 					print_char(err);
 					exit(98);
 				}
-				if (i + j + 1 < len_1 + len_2)
-				{
-					product = (num_1[i] - '0') * (num_2[j] - '0');
-					temp = (answer[i + j + 1] - '0') + product + keep;
-					answer[i + j + 1] = temp % 10 + '0';
-					keep = temp / 10;
-				}
+
+				product = (num_1[i] - '0') * (num_2[j] - '0');
+				temp = (answer[i + j + 1] - '0') + product + keep;
+				answer[i + j + 1] = temp % 10 + '0';
+				keep = temp / 10;
 			}
 		}
 		answer[i] += keep;

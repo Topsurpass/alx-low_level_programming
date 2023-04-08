@@ -14,7 +14,10 @@ int main(int argc, char *argv[])
 	int i;
 
 	if (argc < 3)
+	{
 		printf("Error\n");
+		return (1);
+	}
 	else
 	{
 		for (i = 1; i < argc; i++)

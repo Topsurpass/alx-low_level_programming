@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+    echo "Error: No file name provided"
+    exit 1
+fi
+
+object_files=""
+for file_name in "$@"; do
+    if [ ! -f "$file_name" ]; then
+        echo "Error: File $file_name not found"
+        continue
+    fi
+    file_type="${file_name##*.}"
+    if [ "$file_type" == "c" ]; then
+        gcc -c "$file_name" -o "${file_name%.*}.o"
+    elif [ "$file_type" == "cpp" ]; then
+        g++ -c "$file_name" -o "${file_name%.*}.o"
+    else
+        echo "Error: Unsupported file type"
+        continue
+    fi
+    object_files+=" ${file_name%.*}.o"
+    echo "Compilation of $file_name successful!"
+done
+
+output_file=output
+gcc -Wall -pedantic -Werror -Wextra -std=gnu89 $object_files -o $output_file
+echo "Linking of object files successful!"
+echo "Output file: $output_file"
