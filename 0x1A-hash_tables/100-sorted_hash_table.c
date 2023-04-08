@@ -208,6 +208,31 @@ void shash_table_print(const shash_table_t *ht)
 
 char *shash_table_get(const shash_table_t *ht, const char *key)
 {
+	unsigned long int idx;
+	shash_node_t *temp;
+
+	if (ht == NULL || key == NULL)
+		return (NULL);
+	idx = key_index((const unsigned char *)key, ht->size);
+
+	temp = (ht->array)[idx];
+	while (temp != NULL && strcmp(temp->key, key) != 0)
+		temp = temp->next;
+	if (temp == NULL)
+		return (NULL);
+	else
+		return (temp->value);
+}
+/**
+ * shash_table_get - This function retrieves a value associated
+ * with a key
+ * @ht: The sorted hash table to look for the key
+ * @key: The key to look for
+ *
+ * Return: NULL if not found else the key's value
+ *
+char *shash_table_get(const shash_table_t *ht, const char *key)
+{
 	shash_node_t *temp;
 	unsigned long int idx;
 
@@ -225,6 +250,7 @@ char *shash_table_get(const shash_table_t *ht, const char *key)
 	}
 	return (NULL);
 }
+*/
 /**
  * shash_table_print_rev - Print the hash table in reverse order
  * @ht: The pointer to the hash table
