@@ -62,7 +62,6 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (item == NULL)
 		return (0);
 
-	item->next = NULL;
 	idx = key_index((const unsigned char *) key, ht->size);
 	temp = ht->array[idx];
 	if (temp == NULL) /* Check if the hash table array at this index is free */
