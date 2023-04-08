@@ -50,24 +50,27 @@ int sort_n_insert(shash_table_t *ht, shash_node_t *item)
 {
 	shash_node_t *temp;
 
-	if (ht->shead == NULL)
+	if (ht->shead == NULL) /* let first item be the head and the tail node */
 	{
 		ht->shead = item;
 		ht->stail = item;
 		return (1);
 	}
+	/* compare new item with the head node, if <=, make d head */
 	if (strcmp(item->key, ht->shead->key) <= 0)
 	{
 		item->snext = ht->shead;
 		ht->shead->sprev = item;
 		ht->shead = item;
 	}
-	else if (strcmp(item->key, ht->stail->key) > 0)
+	/* compare new item with the tail, if >=, make the tail */
+	else if (strcmp(item->key, ht->stail->key) >= 0)
 	{
 		item->sprev = ht->stail;
 		ht->stail->snext = item;
 		ht->stail = item;
 	}
+	/* if new item < tail but > head, add new item to the middle */
 	else
 	{
 		temp = ht->shead;
@@ -82,7 +85,7 @@ int sort_n_insert(shash_table_t *ht, shash_node_t *item)
 }
 
 /**
- * create_item - This function creates items for the hashtable array
+ * screate_item - This function creates items for the hashtable array
  * i.e the key:value pair contained in the hashtable
  * @ht: The sorted hash table
  * @key: The key for the hashtable
@@ -92,7 +95,7 @@ int sort_n_insert(shash_table_t *ht, shash_node_t *item)
  * Return: The node or the item created
  */
 
-int create_item(shash_table_t *ht, const char *key, const char *value,
+int screate_item(shash_table_t *ht, const char *key, const char *value,
 		unsigned long int idx)
 {
 	shash_node_t *item = NULL;
@@ -168,7 +171,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		return (1);
 	}
 
-	return (create_item(ht, key, value, idx)); /* creat nw sorted item */
+	return (screate_item(ht, key, value, idx)); /* creat nw sorted item */
 
 }
 /**
