@@ -82,8 +82,9 @@ void shash_table_print(const shash_table_t *ht);
 shash_table_t *shash_table_create(unsigned long int size);
 int sort_n_insert(shash_table_t *ht, shash_node_t *item);
 int shash_table_set(shash_table_t *ht, const char *key, const char *value);
-int screate_item(shash_table_t *ht, const char *key, const char *value, unsigned long int idx);
+int screate_item(shash_table_t *ht, const char *key,
+		const char *value, unsigned long int idx);
 void shash_table_print_rev(const shash_table_t *ht);
 void shash_table_delete(shash_table_t *ht);
-
+char *shash_table_get(const shash_table_t *ht, const char *key);
 #endif
