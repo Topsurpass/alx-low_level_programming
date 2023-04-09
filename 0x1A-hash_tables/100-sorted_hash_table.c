@@ -74,8 +74,12 @@ int sort_n_insert(shash_table_t *ht, shash_node_t *item)
 	else
 	{
 		temp = ht->shead;
-		while (temp->snext != NULL && strcmp(item->key, temp->snext->key) > 0)
+		while (temp->snext != NULL)
+		{
+			if (strcmp(item->key, temp->snext->key) < 0)
+				break;
 			temp = temp->snext;
+		}
 		item->snext = temp->snext;
 		item->sprev = temp;
 		temp->snext->sprev = item;
@@ -126,13 +130,15 @@ int screate_item(shash_table_t *ht, const char *key, const char *value,
 	item->next = NULL;
 	item->sprev = NULL;
 	item->snext = NULL;
+
+	/* if no collision in array index, point to NULL i.e no linked list */
 	if (ht->array[idx] == NULL)
 		item->next = NULL;
 	else
-		item->next = ht->array[idx];
-	ht->array[idx] = item;
+		item->next = ht->array[idx]; /* otherwise form linked list */
+	ht->array[idx] = item; /* new item becomes the head node */
 
-	return (sort_n_insert(ht, item));
+	return (sort_n_insert(ht, item)); /* sort the nodes */
 }
 
 /**
@@ -175,7 +181,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 
 }
 /**
- * shash_table_print - Print the hash table
+ * shash_table_print - Print the hash table from head node
  * @ht: The pointer to the hash table
  *
  * Return: Nothing
