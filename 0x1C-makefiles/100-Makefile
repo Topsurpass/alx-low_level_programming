@@ -26,4 +26,4 @@ oclean:
 fclean: clean oclean
 
 # Force recompilation of all source files but first delete all obj files
-re: oclean all
+re: fclean all
