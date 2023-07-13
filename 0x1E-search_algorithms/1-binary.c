@@ -11,7 +11,7 @@
 void print_b_arr(int *array, size_t left, size_t right)
 {
 	size_t i;
-	
+
 	printf("Searching in array: ");
 	for (i = left; i <= right; i++)
 	{
@@ -23,8 +23,8 @@ void print_b_arr(int *array, size_t left, size_t right)
 	printf("\n");
 }
 /**
- * binary_search - A function that searches for a value in a sorted array of integers
- * using the Binary search algorithm
+ * binary_search - A function that searches for a value in a sorted array
+ * of integers using the Binary search algorithm
  * @array: Pointer to the first element of the array to search in
  * @size: The number of elements in array
  * @value: The value to search for
@@ -38,7 +38,7 @@ int binary_search(int *array, size_t size, int value)
 
 	if (array == NULL)
 		return (-1);
-	
+
 	start = 0;
 	end = mid = size - 1;
 
