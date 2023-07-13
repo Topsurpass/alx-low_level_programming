@@ -72,6 +72,9 @@ int exponential_search(int *array, size_t size, int value)
 {
 	size_t index;
 
+	if (array == NULL)
+		return (-1);
+
 	/* Check if element is at first index */
 	if (array[0] == value)
 		return (0);
